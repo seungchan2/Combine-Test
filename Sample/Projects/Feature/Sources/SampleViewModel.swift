@@ -22,10 +22,12 @@ public final class SampleViewModel: ViewModelType {
    
     public struct Input {
         let userTap: Driver<Void>
+        let webViewTap: Driver<Void>
     }
     
     public struct Output {
         let didChangedBackground = PassthroughSubject<UIColor, Never>()
+        let pushWebView = PassthroughSubject<Void, Never>()
     }
     
     public func transform(from input: Input, cancelBag: CancelBag) -> Output {
@@ -49,8 +51,12 @@ public final class SampleViewModel: ViewModelType {
                 print(weather)
             })
             .store(in: cancelBag)
-
-
+        
+        input.webViewTap
+            .sink(receiveValue: { _ in
+                output.pushWebView.send()
+            })
+            .store(in: cancelBag)
         
         return output
     }
