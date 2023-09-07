@@ -87,8 +87,8 @@ public final class SampleViewController: UIViewController {
             .store(in: cancelBag)
         
         output.pushWebView
-            .sink { _ in
-                let vc = WebViewController()
+            .sink { url in
+                let vc = WebViewController(url: WebURL(URL: url))
                 self.present(vc, animated: true)
             }
             .store(in: cancelBag)

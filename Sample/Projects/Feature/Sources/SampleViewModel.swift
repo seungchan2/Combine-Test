@@ -27,7 +27,7 @@ public final class SampleViewModel: ViewModelType {
     
     public struct Output {
         let didChangedBackground = PassthroughSubject<UIColor, Never>()
-        let pushWebView = PassthroughSubject<Void, Never>()
+        let pushWebView = PassthroughSubject<String, Never>()
     }
     
     public func transform(from input: Input, cancelBag: CancelBag) -> Output {
@@ -54,7 +54,7 @@ public final class SampleViewModel: ViewModelType {
         
         input.webViewTap
             .sink(receiveValue: { _ in
-                output.pushWebView.send()
+                output.pushWebView.send("https://www.youtube.com/watch?v=8Kv2CKipG-Y")
             })
             .store(in: cancelBag)
         
