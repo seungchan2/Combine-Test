@@ -40,21 +40,19 @@ public final class WebViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         setStyle()
-        
-        if let url = URL(string: url.URL) {
-            let request = URLRequest(url: url)
-            webView.load(request)
-        }
+        bind()
     }
 }
 
 private extension WebViewController {
     func setStyle() {
         self.view.backgroundColor = .white
-        
     }
     
     func bind() {
-        
+        if let url = URL(string: url.URL) {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
     }
 }
